@@ -12,9 +12,12 @@
         <div class="container">
             <div class="row">
                 <div class="col text-right">
-                    <div class="mt-3" >
-                        <a asp-controller="Order" asp-action="Index">My orders</a>
-
+                    <a asp-controller="Order" asp-action="Index">My orders</a>
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Authentication"
+                               asp-action="Logout">Logout (@User.Claims.FirstOrDefault(x=> x.Type == "given_name")?.Value) </a>
+                        }
                     </div>
                 </div>
             </div>

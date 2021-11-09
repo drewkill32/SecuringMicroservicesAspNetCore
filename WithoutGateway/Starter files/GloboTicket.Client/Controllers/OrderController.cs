@@ -1,4 +1,7 @@
-﻿using GloboTicket.Web.Models;
+﻿using System;
+using System.Linq;
+using System.Security.Claims;
+using GloboTicket.Web.Models;
 using GloboTicket.Web.Models.View;
 using GloboTicket.Web.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +22,9 @@ namespace GloboTicket.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orders = await orderService.GetOrdersForUser(settings.UserId);
+            var orders = await orderService.GetOrdersForUser(
+                Guid.Parse(User.Claims.FirstOrDefault(x =>
+                    x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value));
 
             return View(new OrderViewModel { Orders = orders });
         }

@@ -30,7 +30,8 @@ namespace GloboTicket.Web
             var requireAuthenticatedUserPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build();
-            
+
+            services.AddHttpContextAccessor();
             var builder = services.AddControllersWithViews(options=>
             {
                 options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUserPolicy));
@@ -62,6 +63,7 @@ namespace GloboTicket.Web
                     options.SaveTokens = true;
                     options.ClientSecret = "2493918d-bb14-4d89-b35f-d44bbe169620";
                     options.GetClaimsFromUserInfoEndpoint = true;
+                    options.Scope.Add("globalticket.fullaccess");
                 });
         }
 

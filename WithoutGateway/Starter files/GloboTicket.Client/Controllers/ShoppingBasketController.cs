@@ -112,7 +112,8 @@ namespace GloboTicket.Web.Controllers
                         CardExpiration = basketCheckoutViewModel.CardExpiration,
                         CvvCode = basketCheckoutViewModel.CvvCode,
                         BasketId = basketId,
-                        UserId = settings.UserId
+                        UserId = Guid.Parse(User.Claims.FirstOrDefault(x =>
+                            x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value)
                     };
 
                     await basketService.Checkout(basketCheckoutViewModel.BasketId, basketForCheckout);
