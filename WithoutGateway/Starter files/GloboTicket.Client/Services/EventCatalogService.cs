@@ -40,9 +40,9 @@ namespace GloboTicket.Web.Services
                     new ClientCredentialsTokenRequest
                     {
                         Address = discoveryDocumentResponse.TokenEndpoint,
-                        ClientId = "globoticketm2m",
-                        ClientSecret = "adde1735-8116-4736-87fe-a0e5a2917d4e",
-                        Scope = "globalticket.fullaccess"
+                        ClientId = "globoticket",
+                        ClientSecret = "2493918d-bb14-4d89-b35f-d44bbe169620",
+                        Scope = "eventcatalog.read"
                     });
 
                 if (tokenResponse.IsError)

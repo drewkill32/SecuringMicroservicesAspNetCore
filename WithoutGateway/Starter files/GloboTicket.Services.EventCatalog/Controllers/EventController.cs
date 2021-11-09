@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GloboTicket.Services.EventCatalog.Controllers
 {
     [Route("api/events")]
     [ApiController]
+    [Authorize(Policy = "CanRead")]
     public class EventController : ControllerBase
     {
         private readonly IEventRepository eventRepository;

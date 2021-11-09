@@ -34,7 +34,8 @@ namespace GloboTicket.Services.ShoppingBasket
             var requireAuthenticatedUserPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build();
-            
+
+            services.AddHttpContextAccessor();
             services.AddControllers(configure =>
             {
                 configure.Filters.Add(new AuthorizeFilter(requireAuthenticatedUserPolicy));
@@ -70,7 +71,7 @@ namespace GloboTicket.Services.ShoppingBasket
                 .AddJwtBearer(options =>
                 {
                     options.Authority = "https://localhost:5010";
-                    options.Audience = "globoticket";
+                    options.Audience = "shoppingbasket";
                 });
         }
 
